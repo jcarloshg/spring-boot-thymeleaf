@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Welcome to the CV Application</h1>
+    <p th:text="'Hello, ' + ${property} + '!'"> </p>
+    <!-- If you want to show more person details, ensure they are added to the model in CvController -->
+
+</body>
+
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Welcome to the CV Application</h1>
+    <p th:text="'Hello, ' + ${name} + '!'"> </p>
+    <p th:text="'Hello, ' + ${person.name} + ' ' + ${person.lastName} + ', ' + ${person.profession} + '!'"> </p>
+
+    <p th:if="${person.profession.length < 3 }">profession menor than 3 letters</p>
+
+</body>
+
+</html> -->

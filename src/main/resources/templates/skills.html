@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Our Skills</h1>
+
+    <p th:if="${skills.isEmpty()}">
+        The list of skills is empty :(
+    </p>
+
+    <!-- <p th:if="${#lists.isEmpty(skills)}">The list of skills is empty :(</p> -->
+
+    <p th:if="${!#lists.isEmpty(skills)}">Here are the skills we have:</p>
+
+    <ul th:if="${!#lists.isEmpty(skills)}">
+        <li th:each="skill, stat : ${skills}"
+            style="margin-bottom: 1em; padding: 0.5em; border-bottom: 1px solid #eee;">
+            <strong th:text="${skill.name}"></strong>
+            <span style="color: #888;">(<span th:text="${skill.level}"></span>)</span>
+
+            <span th:if="${stat.first}"
+                style="background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">first</span>
+            <span th:if="${stat.last}"
+                style="background: #fce4ec; color: #d81b60; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">last</span>
+            <span th:if="${stat.even}"
+                style="background: #e8f5e9; color: #388e3c; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">even</span>
+            <span th:if="${stat.odd}"
+                style="background: #fffde7; color: #fbc02d; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">odd</span>
+
+            <span style="margin-left: 16px; color: #aaa;">
+                <span th:text="'count: ' + ${stat.count}"></span>
+                /
+                <span th:text="'size: ' + ${stat.size}"></span>
+            </span>
+
+            <a th:href="@{'/skills/' + ${stat.index}}"
+                style="float: right; background: #1976d2; color: #fff; padding: 4px 10px; border-radius: 4px; text-decoration: none;">Details</a>
+        </li>
+    </ul>
+
+    <!-- <h2>for skills 2</h2>
+
+    <p th:if="${#lists.isEmpty(skills2)}">The list of skills2 is empty :(</p>
+
+    <p th:if="${!#lists.isEmpty(skills2)}">Here are the skills2 we have:</p>
+
+    <ul th:if="${!#lists.isEmpty(skills2)}">
+        <li th:each="skill : ${skills2}" th:text="${skill}"></li>
+    </ul> -->
+
+    <form th:action="@{/skills}" method="get">
+        <label th:for="name">Buscar</label>
+        <input type="text" th:value="${filter}" name="filter" />
+        <button type="submit">Save</button>
+    </form>
+
+</body>
+
+</html>
